@@ -4,18 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch ./shared --watch ./days/${npm_config_day}p${npm_config_part} ./days/${npm_config_day}p${npm_config_part}/index.ts",
-    "start": "npx ts-node ./days/${npm_config_day}p${npm_config_part}/index.ts",
-    "new": "npx ts-node ./template/run.ts"
+    "dev": "npx ts-node ./cli.ts debug",
+    "start": "npx ts-node ./cli.ts start",
+    "new": "npx ts-node ./cli.ts generate",
+    "cli": "npx ts-node ./cli.ts"
   },
   "author": "Urbain Corentin",
   "license": "WTFPL",
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.11.11",
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "commander": "^8.3.0",
     "fs-extra": "^10.0.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"

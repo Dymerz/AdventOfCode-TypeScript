@@ -10,17 +10,17 @@ A simple template generator for [Advent of Code](https://adventofcode.com/).
 
 Generate a new project:
 
-	npm run new --day=<number> --part=<number>
+	npm run new -- <day> <part>
 
 
 Run in dev mode:
 
-	npm run dev --day=<number> --part=<number>
+	npm run dev -- <day> <part>
 
 
 Or simply run the script:
 
-	npm run start --day=<number> --part=<number>
+	npm run start -- <day> <part>
 
 
 # Edit the template

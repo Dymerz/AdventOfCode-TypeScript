@@ -15,7 +15,7 @@ function copyTemplate(destination: string) {
 
   try {
 		fse.mkdirSync(dest, { recursive: true })
-		fse.copySync(src, dest);
+		fse.copySync(src, dest, { errorOnExist: true, overwrite: false });
   } catch (error: any) {
     logger.error(error);
     process.exit(1)
@@ -38,21 +38,18 @@ function replaceInTemplate(destination: string) {
 }
 
 /**
- * Extract arguments from the command line
- * (these are injected in env by npm)
+ * Extract arguments
  */
 function parseArgs(): number[] {
-  const argDay = process.env.npm_config_day;
+  const argDay = process.argv[2];
   if(!argDay) {
-    logger.error('missing argument: --day=<number>')
-    logger.info('usage: npm run new --day=<number> --part=<number>')
+    logger.error('missing argument: <day>')
     process.exit(1)
   }
 
-  const argPart = process.env.npm_config_part;
+  const argPart = process.argv[3];
   if(!argPart) {
-    logger.error('missing argument: --part=<number>')
-    logger.info('usage: npm run new --day=<number> --part=<number>')
+    logger.error('missing argument: <part>')
     process.exit(1)
   }
 
@@ -62,9 +59,10 @@ function parseArgs(): number[] {
   ]
 }
 
+
 const [ day, part ] = parseArgs();
 const destinationPath = path.join(`./days/${day}p${part}`)
 copyTemplate(destinationPath)
 replaceInTemplate(destinationPath);
 logger.success("Success")
-logger.info(`start using: 'npm run start --day=${day} --part=${part}'`)
+logger.info(`start using: 'npm run start -- ${day} ${part}'`)

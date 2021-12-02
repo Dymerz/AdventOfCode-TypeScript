@@ -14,51 +14,51 @@ export default class Logger {
     if (config) this.config = config
   }
 
-  private writeLine(symbol: string, ...text: Printable[]): void {
+  private writeLine(symbol: string, ...texts: Printable[]): void {
     if (!this.config.enabled)
       return;
 
-    if(typeof text === 'object') {
+    if(!Array.isArray(texts) && typeof texts === 'object') {
       console.log(`${symbol}`)
-      console.log(text)
+      console.log(texts)
     }
     else
-      console.log(`${symbol} ${text}`)
+      console.log(`${symbol} ${texts}`)
   }
 
-  public error (...text: Printable[]): void {
-    this.writeLine('[❌]', ...text)
+  public error (...texts: Printable[]): void {
+    this.writeLine('❌', ...texts)
   }
 
-  public success (...text: Printable[]): void {
-    this.writeLine('[✅]', ...text)
+  public success (...texts: Printable[]): void {
+    this.writeLine('✅', ...texts)
   }
 
-  public plus (...text: Printable[]): void {
-    this.writeLine('[➕]', ...text)
+  public plus (...texts: Printable[]): void {
+    this.writeLine('➕', ...texts)
   }
 
-  public less (...text: Printable[]): void {
-    this.writeLine('[➖]', ...text)
+  public less (...texts: Printable[]): void {
+    this.writeLine('➖', ...texts)
   }
 
-  public equal (...text: Printable[]): void {
-    this.writeLine('[==]', ...text)
+  public equal (...texts: Printable[]): void {
+    this.writeLine('==', ...texts)
   }
 
-  public ok (...text: Printable[]): void {
-    this.writeLine('[🆗]', ...text)
+  public ok (...texts: Printable[]): void {
+    this.writeLine('🆗', ...texts)
   }
 
-  public circle (...text: Printable[]): void {
-    this.writeLine('[⚪]', ...text)
+  public circle (...texts: Printable[]): void {
+    this.writeLine('⚪', ...texts)
   }
 
-  public info (...text: Printable[]): void {
-    this.writeLine('[ℹ️ ]', ...text) // the space is not a mistake!
+  public info (...texts: Printable[]): void {
+    this.writeLine('ℹ️ ', ...texts) // the space is not a mistake!
   }
 
-  public debug (...text: Printable[]): void {
-    this.writeLine('[🚧]', ...text) // the space is not a mistake!
+  public debug (...texts: Printable[]): void {
+    this.writeLine('🚧', ...texts) // the space is not a mistake!
   }
 }

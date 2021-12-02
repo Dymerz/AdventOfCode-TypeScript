@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import path from "path";
 
-const relativePath = `./days/${process.env.npm_config_day}p${process.env.npm_config_part}/`
+const relativePath = `./days/${process.env.aoc_day}p${process.env.aoc_part}/`
 
 /**
  * get the content of a file relative to 'days/folder/'
