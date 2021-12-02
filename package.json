@@ -1,0 +1,23 @@
+{
+  "name": "aoc-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch ./shared --watch ./days/${npm_config_day}p${npm_config_part} ./days/${npm_config_day}p${npm_config_part}/index.ts",
+    "start": "npx ts-node ./days/${npm_config_day}p${npm_config_part}/index.ts",
+    "new": "npx ts-node ./template/run.ts"
+  },
+  "author": "Urbain Corentin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^16.11.11",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  }
+}
