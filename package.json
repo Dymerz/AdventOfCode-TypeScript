@@ -9,7 +9,7 @@
     "new": "npx ts-node ./template/run.ts"
   },
   "author": "Urbain Corentin",
-  "license": "ISC",
+  "license": "WTFPL",
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.11.11",
