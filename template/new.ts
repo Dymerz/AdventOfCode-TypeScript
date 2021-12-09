@@ -7,7 +7,7 @@ const logger = new Logger({enabled: true});
 
 /**
  * copy template files in the given path
- * @param destination the de relative folder where to copy
+ * @param destination the relative folder where to copy
  */
 function copyTemplate(destination: string) {
   const src = path.join(__dirname, './src')
@@ -24,15 +24,17 @@ function copyTemplate(destination: string) {
 
 /**
  * replace variables in the template
- * @param destination the de relative folder where to copy
+ * @param destination the relative folder where to copy
+ * @param day the value to replace $DAY in templates
+ * @param part the value to replace $PART in templates
  */
-function replaceInTemplate(destination: string) {
+function replaceInTemplate(destination: string, day: number, part: number) {
   const filepath = path.join(__dirname, '../', destination, './index.ts')
 
   const content = fse.readFileSync(filepath, 'utf-8')
     .replace(/\$YEAR/g, '2021')
-    .replace(/\$DAY/g, process.env.npm_config_day!)
-    .replace(/\$PART/g, process.env.npm_config_part!)
+    .replace(/\$DAY/g, day.toString())
+    .replace(/\$PART/g, part.toString())
 
   fse.writeFileSync(filepath, content, {encoding: 'utf-8'})
 }
@@ -63,6 +65,6 @@ function parseArgs(): number[] {
 const [ day, part ] = parseArgs();
 const destinationPath = path.join(`./days/${day}p${part}`)
 copyTemplate(destinationPath)
-replaceInTemplate(destinationPath);
+replaceInTemplate(destinationPath, day, part);
 logger.success("Success")
 logger.info(`start using: 'npm run start -- ${day} ${part}'`)
